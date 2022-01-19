@@ -17,3 +17,15 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+.search__container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.note__lists {
+  margin-top: 2rem;
+  border-top: 2px solid red;
+}

@@ -8,14 +8,25 @@
     <title>simple todo</title>
   </head>
   <body>
-    <h1>My Web Page</h1>
+    <h1>My Cat Diaries</h1>
 
-    <ul>
-      <% for(let i = 0; i < numberOfIteration; i++) { %>
-      <li><%= i %></li>
-      <% } %>
+    <form action="/" method="get" class="search__container">
+      <label for="searchInput">search: </label>
+      <input type="text" name="searchTerm" id="searchInput" />
+      <button>search</button>
+    </form>
+
+    <ul class="note__lists">
+      <% notes.forEach(note => { %>
+      <li>
+        <h3><%= note.title %></h3>
+        <p><%= note.contents.substring(0, 200) %>...</p>
+        <p><%= new Date(note.timestamp) %></p>
+        <a href="/notes/<%= note.id %>">view more</a>
+      </li>
+      <% }) %>
     </ul>
 
-    <h2><%= Date() %></h2>
+    <a href="/createNote">create new note...</a>
   </body>
 </html>

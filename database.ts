@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type Notes = {
   id: number;
   title: string;
@@ -33,7 +34,7 @@ class DatabaseService implements Controller {
     },
   ];
 
-  public getNotes(searchTerm: string): Notes[] {
+  public getNotes(searchTerm: any): Notes[] {
     if (!searchTerm) {
       return this.notes;
     }
