@@ -18,11 +18,25 @@ import helmet from 'helmet';
     });
   });
 
+  app.get('/notes/:id', (req: Request, res: Response): void => {
+    const id = +req.params.id;
+    const note = controllers.getNote(id);
+
+    if (!note) {
+      res.status(404).render('404.ejs');
+      return;
+    }
+
+    res.render('singleNote.ejs', {
+      note,
+    });
+  });
+
   app.post('/', (req: Request, res: Response): void => {
     const data = req.body;
     controllers.addNote(data);
 
-    res.redirect('/notes');
+    res.redirect('/');
   });
 
   app.post('/notes/:id/delete', (req, res): void => {
