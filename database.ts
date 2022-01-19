@@ -43,6 +43,7 @@ class DatabaseService implements Controller {
         note.title.includes(searchTerm) || note.contents.includes(searchTerm)
     );
   }
+
   public getNote(id: number): Notes | undefined {
     if (!id) {
       throw new Error('id is potentially undefined');
@@ -50,11 +51,18 @@ class DatabaseService implements Controller {
 
     return this.notes.find((note) => note.id === id);
   }
-  public addNote(): void {
-    throw new Error('Method not implemented.');
+
+  public addNote(note: Notes): void {
+    this.notes.push({
+      ...note,
+      id: this.currentId,
+      timestamp: Date.now(),
+    });
+    this.currentId++;
   }
-  public deleteNote(): Notes[] {
-    throw new Error('Method not implemented.');
+
+  public deleteNote(id: number): Notes[] {
+    return this.notes.filter((note) => note.id !== id);
   }
 }
 
