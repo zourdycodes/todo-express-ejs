@@ -32,6 +32,10 @@ import helmet from 'helmet';
     });
   });
 
+  app.get('/createNote', (_req: Request, res: Response): void => {
+    res.render('createNote.ejs');
+  });
+
   app.post('/', (req: Request, res: Response): void => {
     const data = req.body;
     controllers.addNote(data);
